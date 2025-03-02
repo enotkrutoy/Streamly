@@ -14,17 +14,16 @@ logging.basicConfig(level=logging.INFO)
 NUMBER_OF_MESSAGES_TO_DISPLAY = 20
 API_DOCS_URL = "https://docs.streamlit.io/library/api-reference"
 
-# Retrieve and validate API key
-GROQ_API_KEY = st.secrets.get("GROQ_API_KEY", None)
-if not GROQ_API_KEY:
-    st.error("Please add your Groq API key to the Streamlit secrets.toml file.")
-    st.stop()
 
-# Initialize Groq client
-client = OpenAI(
-    api_key=GROQ_API_KEY,
-    base_url="https://api.groq.com/openai/v1"  # Groq API endpoint
-)
+GROQ_API_KEY = st.text_input("Groq API Key", type="password")
+if not GROQ_API_KEY:
+    st.info("Please add your Groq API key to continue.", icon="🗝️")
+else:
+    # Создаем клиента для работы с Groq API
+    client = OpenAI(
+        api_key=GROQ_API_KEY,
+        base_url="https://api.groq.com/openai/v1",
+    )
 
 # Page configuration
 st.set_page_config(
