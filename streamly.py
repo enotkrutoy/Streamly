@@ -4,7 +4,6 @@ import logging
 from PIL import Image, ImageEnhance
 import time
 import json
-import requests
 import base64
 
 # Configure logging
@@ -14,10 +13,21 @@ logging.basicConfig(level=logging.INFO)
 NUMBER_OF_MESSAGES_TO_DISPLAY = 20
 API_DOCS_URL = "https://docs.streamlit.io/library/api-reference"
 
-# Page configuration (Перемещено в начало)
+# API Key Input
+GROQ_API_KEY = st.text_input("Groq API Key", type="password")
+if not GROQ_API_KEY:
+    st.info("Please add your Groq API key to continue.", icon="🗝️")
+else:
+    # Initialize Groq client
+    client = OpenAI(
+        api_key=GROQ_API_KEY,
+        base_url="https://api.groq.com/openai/v1",
+    )
+
+# Page configuration MUST BE FIRST
 st.set_page_config(
     page_title="Streamly - Groq-Powered Streamlit Assistant",
-    page_icon="🤖",
+    page_icon="imgs/avatar_streamly.png",
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
@@ -31,17 +41,6 @@ st.set_page_config(
         """
     }
 )
-
-# API Key Input
-GROQ_API_KEY = st.text_input("Groq API Key", type="password")
-if not GROQ_API_KEY:
-    st.info("Please add your Groq API key to continue.", icon="🗝️")
-else:
-    # Создаем клиента для работы с Groq API
-    client = OpenAI(
-        api_key=GROQ_API_KEY,
-        base_url="https://api.groq.com/openai/v1",
-    )
 
 # Core functionality
 def img_to_base64(image_path):
