@@ -9,9 +9,23 @@ import base64
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Constants
-NUMBER_OF_MESSAGES_TO_DISPLAY = 20
-API_DOCS_URL = "https://docs.streamlit.io/library/api-reference"
+# Page configuration MUST BE FIRST
+st.set_page_config(
+    page_title="Streamly - Groq-Powered Streamlit Assistant",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="auto",
+    menu_items={
+        "Get help": "https://github.com/AdieLaine/Streamly",
+        "Report a bug": "https://github.com/AdieLaine/Streamly",
+        "About": """
+            ## Streamly
+            ### Powered by DeepSeek R1 Distill LLaMA 70B (Groq)
+            An AI assistant for Streamlit developers with code generation, 
+            documentation updates, and real-time chat capabilities.
+        """
+    }
+)
 
 # API Key Input
 GROQ_API_KEY = st.text_input("Groq API Key", type="password")
