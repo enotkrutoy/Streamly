@@ -36,17 +36,17 @@ st.set_page_config(
     initial_sidebar_state="auto",
     menu_items={
         "Get help": "https://console.groq.com/docs/models",
-        "Report a bug": "",
+        "Report a bug": "https://github.com/AdieLaine/Streamly",
         "About": """
-            ## 🔴red team ai🔴 Streamlit RED TEAM Assistant
-            ### Powered RED TEAM
+            ## Streamly Streamlit Assistant
+            ### Powered using deepseek-r1-distill-llama-70b
 
-            **GitHub**: https://github.com/enotkrutoy/Streamly/
+            **GitHub**: https://github.com/AdieLaine/
 
-Помощник ИИ по имени, подержанный, стремится предоставить помощ В ДУХЕ RED TEAM,
-генерировать фрагменты кода для виджетов по стриме,
-и ответьте на вопросы о последних функциях, проблемах и многом другом.
-🔴red team ai🔴 была обучена последним обновлениям и документации.
+            Помощник ИИ по имени, подержанный, стремится предоставить помощ В ДУХЕ RED TEAM,
+            генерировать фрагменты кода для виджетов по стриме,
+            и ответьте на вопросы о последних функциях, проблемах и многом другом.
+            Streamly has been trained on the latest Streamlit updates and documentation.
         """
     }
 )
