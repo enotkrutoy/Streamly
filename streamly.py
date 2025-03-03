@@ -19,6 +19,19 @@ NUMBER_OF_MESSAGES_TO_DISPLAY = 20
 API_DOCS_URL = "https://docs.streamlit.io/library/api-reference"
 DEFAULT_TIMEOUT = 10  # seconds
 
+# Retrieve and validate API key
+# Retrieve and validate GROQ API key
+GROQ_API_KEY = st.secrets.get("openai", {}).get("GROQ_API_KEY", None)
+if not GROQ_API_KEY:
+    st.error("Please add your Groq API key to the Streamlit secrets.toml file.")
+    st.stop()
+
+# Initialize Groq client
+client = openai.OpenAI(
+    api_key=GROQ_API_KEY,
+    base_url="https://api.groq.com/openai/v1",
+)
+
 # Helper functions
 def convert_image_to_base64(image_path: str) -> Optional[str]:
     """Convert image to Base64 string with error handling."""
